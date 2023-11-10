@@ -1,0 +1,57 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    creationTimestamp: "2023-11-10T16:20:23Z"
+    generation: 1
+    name: demo
+    namespace: default
+    resourceVersion: "3114502"
+    uid: 46e03250-5e57-4a87-907a-6f83907f32ed
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: www.demo.io
+      http:
+        paths:
+        - backend:
+            service:
+              name: demo
+              port:
+                number: 80
+          path: /
+          pathType: Exact
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.1.160
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    creationTimestamp: "2023-11-10T16:34:06Z"
+    generation: 1
+    name: demo-localhost
+    namespace: default
+    resourceVersion: "3116290"
+    uid: 25921e03-b0f6-4cd1-a2fb-f9f63bb92546
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: demo.localdev.me
+      http:
+        paths:
+        - backend:
+            service:
+              name: demo
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.1.160
+kind: List
+metadata:
+  resourceVersion: ""
